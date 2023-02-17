@@ -1,0 +1,29 @@
+{ "name": "array-of-truths",
+  "version": "0.0.1",
+  "description": "Ensure your input becomes an Array, and keep only the truthy values.",
+  "keywords": [],
+
+  "author": "M.K. (https://github.com/mk-pmb)",
+  "homepage": "https://github.com/mk-pmb/array-of-truths-js/#readme",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mk-pmb/array-of-truths-js.git"
+  },
+  "bugs": {
+    "url": "https://github.com/mk-pmb/array-of-truths-js/issues"
+  },
+  "contributors": [],
+
+  "private": false, "license": "ISC",
+
+  "scripts": { "test": "elp && nodemjs test/all.mjs" },
+  "directories": { "test": "test" },
+  "eslintConfig": { "extends": "nodejs-pmb" },
+
+  "dependencies": {},
+  "devDependencies": {
+  },
+
+
+  "engines": { "npm": ">=7.0.0", "node": ">=16.0.0" }
+}
