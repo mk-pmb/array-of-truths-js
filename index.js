@@ -1,16 +1,39 @@
 /* -*- coding: UTF-8, tab-width: 2 -*- */
-/* eslint-disable spaced-comment, strict, no-var, one-var */
+/* eslint-disable
+  no-var,
+  one-var,
+  one-var-declaration-per-line,
+  prefer-rest-params,
+  prefer-spread,
+  spaced-comment,
+  strict,
+  */
 /*jslint indent: 2, maxlen: 80, browser: true */
 (function namespace() {
   'use strict';
-  var EX = function arrayOfTruths(x) {
+  var EX, emptyArray = [],
+    ancientShallowFlatten = emptyArray.concat.bind(emptyArray);
+
+  EX = function arrayOfTruths(x) {
     if (!x) { return []; }
-    return [].concat(x).filter(Boolean);
+    return ancientShallowFlatten(x).filter(Boolean);
   };
+
 
   EX.ifAny = function arrayOfTruthsIfAny(x) {
     var t = (x ? EX(x) : 0);
     return (t.length ? t : 0);
+  };
+
+
+  EX.ifAnyMap = function arrayOfTruthsIfAnyMap(x) {
+    var m;
+    if (!x) { return false; }
+    m = emptyArray.slice.call(arguments, 1); // ancient version of rest args
+    m = emptyArray.concat.apply(emptyArray, m);
+    // ^-- ancient version of spread operator + [].flatten
+    return EX(m).reduce(function r(t, f) { return t && EX.ifAny(t.map(f)); },
+      EX.ifAny(x));
   };
 
 

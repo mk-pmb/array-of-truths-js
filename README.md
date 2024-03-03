@@ -21,10 +21,20 @@ If x is not an array, it will be treated as an array with x as the only item.
 Return a new Array that contains the truthy items from x.
 
 
-### arrayOfTruths.ifAny(x)
+### .ifAny(x)
 
 Like `arrayOfTruths(x)` but if there are no truthy items,
 instead of an empty array, return number 0.
+
+
+
+### .ifAnyMap(x, m)
+
+Map a list `x` through one or more mapper functions `m`
+(function or array of functions), except initially and also
+after each step, false-y items are removed from the list.
+If the list would be empty, return number 0 instead.
+
 
 
 
