@@ -11,12 +11,11 @@
 /*jslint indent: 2, maxlen: 80, browser: true */
 (function namespace() {
   'use strict';
-  var EX, emptyArray = [],
-    ancientShallowFlatten = emptyArray.concat.bind(emptyArray);
+  var EX, emptyArray = [];
 
   EX = function arrayOfTruths(x) {
     if (!x) { return []; }
-    return ancientShallowFlatten(x).filter(Boolean);
+    return emptyArray.concat(x).filter(Boolean);
   };
 
 
