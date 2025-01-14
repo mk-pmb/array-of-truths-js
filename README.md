@@ -37,6 +37,19 @@ If the list would be empty, return number 0 instead.
 
 
 
+### .listAdd(o, k, v)
+
+Replace `o[k]` with an array that contains:
+
+1. The truthy old value(s), if `o` had an "own" property named `k`.
+   See usage test for caveats.
+2. `v` if it is truthy.
+
+Returns that new array.
+
+
+
+
 
 Usage
 -----

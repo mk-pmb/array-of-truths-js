@@ -1,5 +1,5 @@
 { "name": "array-of-truths",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Ensure your input becomes an Array, and keep only the truthy values.",
   "keywords": [],
 

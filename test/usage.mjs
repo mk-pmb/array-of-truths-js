@@ -67,6 +67,65 @@ test('Sunrise tests for .ifAnyMap', (t) => {
 });
 
 
+test('Flower clock tests for .listAdd', (t) => {
+  t.plan(1);
+  const clk = {
+    naming: 'latin',
+    morning: 'Mirabilis jalapa',
+    midday: ['Zinnia grandiflora', 'Zinnia elegans'],
+    evening: null,
+    autogrow: false,
+    colors: 'keep',
+  };
+  const add = arrayOfTruths.listAdd;
+  add(clk, 'midday', 'Zinnia peruviana');
+  add(clk, 'evening', 'Oenothera speciosa');
+  add(clk, 'night', 'Ipomoea alba');
+  add(clk, 'evening', 'Jasminum officinale');
+  add(clk, 'night', '');
+  add(clk, 'morning', 'Ipomoea nil');
+  add(clk, 'morning', null);
+  add(clk, 'evening', 'Jasminum sambac');
+  add(clk, 'midday', 'Jasminum polyanthum');
+  add(clk, 'evening', 0);
+  add(clk, 'evening', 'Jasminum sambac');
+  add(clk, 'night', 'Cestrum nocturnum');
+  add(clk, 'midday');
+  add(clk, 'alreadyPlanted');
+  add(clk, 'colors', false);
+  add(clk, 'hasOwnProperty', 123);
+  t.same(clk, {
+    naming: 'latin',
+    morning: ['Mirabilis jalapa', 'Ipomoea nil'],
+    midday: [
+      'Zinnia grandiflora',
+      'Zinnia elegans',
+      'Zinnia peruviana',
+      'Jasminum polyanthum',
+    ],
+    evening: [
+      'Oenothera speciosa',
+      'Jasminum officinale',
+      'Jasminum sambac',
+      'Jasminum sambac',
+    ],
+    night: ['Ipomoea alba', 'Cestrum nocturnum'],
+    autogrow: false,
+    alreadyPlanted: [],
+    colors: ['keep'],
+    hasOwnProperty: [123],
+  });
+  t.end();
+});
+
+
+
+
+
+
+
+
+
 
 
 

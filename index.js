@@ -11,9 +11,12 @@
 /*jslint indent: 2, maxlen: 80, browser: true */
 (function namespace() {
   'use strict';
-  var EX, emptyArray = [];
+  var EX, emptyArray = [],
+    hasOwn = Function.call.bind(Object.prototype.hasOwnProperty);
 
   EX = function arrayOfTruths(x) {
+    /* Do not flatten potential extra arguments: They may be gratuitous
+       extras from Array#forEach or String#replace. */
     if (!x) { return []; }
     return emptyArray.concat(x).filter(Boolean);
   };
@@ -33,6 +36,13 @@
     // ^-- ancient version of spread operator + [].flatten
     return EX(m).reduce(function r(t, f) { return t && EX.ifAny(t.map(f)); },
       EX.ifAny(x));
+  };
+
+
+  EX.listAdd = function listAdd(o, k, v) {
+    var a = emptyArray.concat(hasOwn(o, k) && o[k], v).filter(Boolean);
+    o[k] = a; // eslint-disable-line no-param-reassign
+    return a;
   };
 
 
