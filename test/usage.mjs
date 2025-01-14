@@ -72,23 +72,23 @@ test('Flower clock tests for .listAdd', (t) => {
   const clk = {
     naming: 'latin',
     morning: 'Mirabilis jalapa',
-    midday: ['Zinnia grandiflora', 'Zinnia elegans'],
+    midday: ['Zinnia elegans', 'Zinnia grandiflora'],
     evening: null,
     autogrow: false,
     colors: 'keep',
   };
   const add = arrayOfTruths.listAdd;
-  add(clk, 'midday', 'Zinnia peruviana');
-  add(clk, 'evening', 'Oenothera speciosa');
-  add(clk, 'night', 'Ipomoea alba');
+  add(clk, 'midday', 'Jasminum polyanthum');
   add(clk, 'evening', 'Jasminum officinale');
+  add(clk, 'night', 'Ipomoea alba');
+  add(clk, 'evening', 'Oenothera speciosa');
+  add(clk, 'midday', 'Jasminum polyanthum'); // verify add() doesn't dedupe
   add(clk, 'night', '');
-  add(clk, 'morning', 'Ipomoea nil');
+  add(clk, 'morning', 'Ipomoea nil', 'unexpected extra arg');
   add(clk, 'morning', null);
   add(clk, 'evening', 'Jasminum sambac');
-  add(clk, 'midday', 'Jasminum polyanthum');
+  add(clk, 'midday', 'Zinnia peruviana');
   add(clk, 'evening', 0);
-  add(clk, 'evening', 'Jasminum sambac');
   add(clk, 'night', 'Cestrum nocturnum');
   add(clk, 'midday');
   add(clk, 'alreadyPlanted');
@@ -98,15 +98,15 @@ test('Flower clock tests for .listAdd', (t) => {
     naming: 'latin',
     morning: ['Mirabilis jalapa', 'Ipomoea nil'],
     midday: [
-      'Zinnia grandiflora',
       'Zinnia elegans',
-      'Zinnia peruviana',
+      'Zinnia grandiflora',
       'Jasminum polyanthum',
+      'Jasminum polyanthum', // add() is expected to not dedupe
+      'Zinnia peruviana',
     ],
     evening: [
-      'Oenothera speciosa',
       'Jasminum officinale',
-      'Jasminum sambac',
+      'Oenothera speciosa',
       'Jasminum sambac',
     ],
     night: ['Ipomoea alba', 'Cestrum nocturnum'],
